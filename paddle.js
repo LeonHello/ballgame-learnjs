@@ -27,13 +27,16 @@ var Paddle = function(game){
   o.moveRight = function(){
     o.move(o.x + o.speed)
   }
-  o.collide = function(ball){
-    if (ball.y + ball.image.height > o.y) {
-      if (ball.x > o.x && ball.x < o.x + o.image.width) {
-        return true
-      }
-    }
-    return false
+  // o.collide = function(ball){
+  //   if (ball.y + ball.image.height > o.y) {
+  //     if (ball.x > o.x && ball.x < o.x + o.image.width) {
+  //       return true
+  //     }
+  //   }
+  //   return false
+  // }
+  o.collide = function(ball) {
+    return rectIntersects(o, ball) || rectIntersects(ball, o)
   }
   return o
 }
