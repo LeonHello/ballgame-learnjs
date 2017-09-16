@@ -31,6 +31,30 @@ var __main = function() {
       ball.fire()
     })
 
+    var enableDrag = false
+
+    game.canvas.addEventListener('mousedown', function(event){
+      var x = event.offsetX
+      var y = event.offsetY
+      // log(event)
+      if (ball.hasPoint(x, y)) {
+        enableDrag = true
+      }
+    })
+
+    game.canvas.addEventListener('mousemove', function(event){
+      var x = event.offsetX
+      var y = event.offsetY
+      if (enableDrag) {
+        ball.x = x
+        ball.y = y
+      }
+    })
+
+    game.canvas.addEventListener('mouseup', function(event){
+      enableDrag = false
+    })
+
     game.update = function() {
       if (window.paused) {
         return
@@ -61,6 +85,9 @@ var __main = function() {
     }
 
     game.draw = function() {
+      //draw background
+      game.context.fillSytle = '#555'
+      game.context.fillRect(0, 0, 400, 300)
       // draw
       game.drawImage(paddle)
       game.drawImage(ball)
