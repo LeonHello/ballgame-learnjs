@@ -22,9 +22,7 @@ var Ball = function(game){
       if (o.y < 0 || o.y + o.image.height > 300) {
         o.speedY *= -1
       }
-      // if (o.y > 300) {
-      //   o.alive = false
-      // }
+
       //move
       o.x += o.speedX
       o.y += o.speedY

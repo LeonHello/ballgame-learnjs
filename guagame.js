@@ -4,6 +4,7 @@ var GuaGame = function(fps, images, runCallback){
   //程序会在所有图片载入成功后才运行
 
   var g = {
+    scenes: null,
     actions: {},
     keydowns: {},
     images: {},
@@ -12,12 +13,6 @@ var GuaGame = function(fps, images, runCallback){
   var context = canvas.getContext('2d')
   g.canvas = canvas
   g.context = context
-  // g.update = function(){
-  //   pass
-  // }
-  // g.draw = function(){
-  //   pass
-  // }
 
   g.drawImage = function(guaImage){
     g.context.drawImage(guaImage.image, guaImage.x, guaImage.y)
@@ -33,6 +28,12 @@ var GuaGame = function(fps, images, runCallback){
   //
   g.registerAction = function(key, callback){
     g.actions[key] = callback
+  }
+  g.update = function(){
+    g.scene.update()
+  }
+  g.draw = function(){
+    g.scene.draw()
   }
   //timer
   window.fps = 30
@@ -73,17 +74,24 @@ var GuaGame = function(fps, images, runCallback){
       //所有图片载入成功后，调用 run
       loads.push(1)
       if (loads.length == names.length) {
-        g.run()
+        g.__start()
       }
     }
   }
-
-  g.run = function() {
-    runCallback()
+  g.runWithScene = function(scene) {
+    g.scene = scene
     //开始运行程序
     setTimeout(function() {
       runloop()
     }, 1000/window.fps)
+  }
+
+  g.__start = function() {
+    runCallback(g)
+  }
+
+  g.replaceScene = function(scene) {
+    g.scene = scene
   }
 
   g.imageByName = function(name) {
@@ -95,6 +103,7 @@ var GuaGame = function(fps, images, runCallback){
     }
     return image
   }
+
   // var m = setInterval(function(){
   //     //events
   //     var actions = Object.keys(g.actions)
