@@ -9,8 +9,8 @@ var __main = function() {
   enableDebugMode(game, true)
 
   var game = GuaGame(30, images, function(g){
-    var mainscene = Scene(g)
-    g.runWithScene(mainscene)
+    var scene = SceneStart(g)
+    g.runWithScene(scene)
   })
 
 }

@@ -20,6 +20,7 @@ var GuaGame = function(fps, images, runCallback){
 
   //events
   window.addEventListener('keydown', function(event){
+    // log(event)
     g.keydowns[event.key] = true
   })
   window.addEventListener('keyup', function(event){
@@ -87,7 +88,7 @@ var GuaGame = function(fps, images, runCallback){
   }
 
   g.__start = function() {
-    runCallback(g)
+    runCallback(this)
   }
 
   g.replaceScene = function(scene) {

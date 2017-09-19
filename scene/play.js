@@ -1,5 +1,5 @@
 
-var Scene = function(game) {
+var ScenePlay = function(game) {
   //初始化操作
   var score = 0
 
