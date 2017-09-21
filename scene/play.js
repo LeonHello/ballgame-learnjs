@@ -1,5 +1,5 @@
 
-var ScenePlay = function(game) {
+var SceneMain = function(game) {
   //初始化操作
   var score = 0
 
@@ -76,7 +76,7 @@ var ScenePlay = function(game) {
       return
     }
     if (ball.y > paddle.y) {
-      var end = SceneEnd(game)
+      var end = new SceneEnd(game)
       game.replaceScene(end)
     }
     ball.move()

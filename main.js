@@ -8,8 +8,8 @@ var __main = function() {
 
   enableDebugMode(game, true)
 
-  var game = GuaGame(30, images, function(g){
-    var scene = SceneStart(g)
+  var game = Game.instance(30, images, function(g){
+    var scene = new SceneStart(g)
     g.runWithScene(scene)
   })
 
